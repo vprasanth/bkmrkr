@@ -1,0 +1,14 @@
+{
+  "name": "bookmark",
+  "version": "0.0.1",
+  "description": "bookmark it",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "prasanth vaaheeswaran",
+  "license": "mit",
+  "dependencies": {
+    "koa": "^0.20.0"
+  }
+}
