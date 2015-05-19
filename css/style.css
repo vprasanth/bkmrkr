@@ -1,0 +1,31 @@
+body {
+    padding: 10px;
+    margin: 0;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0;
+}
+
+a {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+a:link {
+    color: #80CEBA;
+}
+
+a:hover {
+    color: #77BEAC;
+}
+
+a:visited {
+    color: #C5E7F7;
+}
