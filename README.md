@@ -1,5 +1,5 @@
 ##bkmrkr
-A simple tool to share and view bookmarks with your friends, colleagues, robots. This is just a fun side project to learn koa, node, etc.
+A simple tool to share and view bookmarks with your friends, colleagues, and robots. This is just a fun side project to learn koa, node, etc.
 
 ###Requirments
 - npm
