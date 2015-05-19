@@ -1,9 +1,9 @@
 ##bkmrkr
-A simple tool to share and view bookmarks with your friends, colleagues, and robots. This is just a fun side project to learn koa, node, etc.
+A simple tool to share and view bookmarks with your friends, colleagues, and robots. This is just a side project to learn koa, node, etc.
 
 ###Requirments
 - npm
-- Node version >=0.11.x
+- node version >= 0.11.x
 - harmony flag
 
 ###Run
