@@ -9,7 +9,7 @@ A simple tool to share and view bookmarks with your friends, colleagues, and rob
 ###Run
 `npm install && node --harmony server.js`
 
-###Usage
+##Usage
 
 ####Add bookmark
 `curl -d '{"url":"http://xkcd.com/", "label": "xkcd"}' -v localhost:3000/api/v1/bookmark`
