@@ -1,11 +1,13 @@
-var koa = require('koa');
-var router = require('koa-router');
-var body = require('koa-parse-json');
-var hbs = require('koa-hbs');
-var serve = require('koa-static');
-
-var app = koa();
-var port = 3000;
+var koa = require('koa'),
+    router = require('koa-router'),
+    body = require('koa-parse-json'),
+    hbs = require('koa-hbs'),
+    serve = require('koa-static'),
+    r = require('rethinkdbdash')({db: 'bkmrkr'}),
+    app = koa(),
+    port = 3000,
+    db = 'bkmrkr',
+    table = 'bookmarks';
 
 // Configuration
 // @TODO: Move this elseware
@@ -15,6 +17,8 @@ app.use(hbs.middleware({
     viewPath: __dirname + '/views'
 }));
 
+// Handlebar helper
+// @TODO: Move this elseware
 hbs.registerHelper('list', function(items, options) {
     var out = '<ul>';
     for(var i=0, l=items.length; i<l; i++) {
@@ -23,14 +27,20 @@ hbs.registerHelper('list', function(items, options) {
     return out + '</ul>';
 });
 
-var db = [{url: 'http://futurama.wikia.com/wiki/Morbo', label: 'Morbo!'},{url: 'http://www.vprasanth.com', label: 'Prasanth'}];
 // Routing
 // @TODO: Move this out to another file
 app
     .use(router(app))
     .get('/', function *(){
         console.log(this.method, this.url);
-        yield this.render('index', {db:db});
+        try {
+            var list = yield r.table(table).run();
+            yield this.render('index', {db: list});
+        } catch (err){
+            console.log(err);
+            this.status = 500;
+            this.body = 'There was an error';
+        }
     })
     .get('/about', function *(){
         console.log(this.method, this.url);
@@ -39,9 +49,9 @@ app
     })
     .post('/api/v1/bookmark', function *(){
         //@TODO: Return id of created resource
-        db.push(this.request.body);
-        console.log(db[db.length-1]);
-        console.log('All:', db);
+        console.log(this.method, this.url);
+        var data = this.request.body;
+        var status = yield r.table(table).insert(data).run();
         this.status = 200;
     });
 
